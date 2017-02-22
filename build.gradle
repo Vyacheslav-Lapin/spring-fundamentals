@@ -6,9 +6,29 @@ apply plugin: 'java'
 sourceCompatibility = 1.8
 
 repositories {
+    maven { url 'http://repo.spring.io/libs-milestone' }
+    maven { url 'http://repo.spring.io/libs-release' }
     mavenCentral()
+    jcenter()
+    mavenLocal()
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
-    testCompile 'junit:junit:+'
+    compile 'log4j:log4j:+',
+//            'ch.qos.logback:logback-classic:+',
+            'org.hibernate:hibernate-entitymanager:+',
+//            'javax.transaction:jta:+',
+            'org.springframework:spring-context-support:+',
+            'org.springframework:spring-context:+',
+//            'org.codehaus.groovy:groovy-all:+',
+//            'com.h2database:h2:+',
+            'io.javaslang:javaslang:+',
+            'com.github.Vyacheslav-Lapin:Hegel:master-SNAPSHOT' //https://github.com/Vyacheslav-Lapin/Hegel.git
+
+    compileOnly 'org.projectlombok:lombok:+'
+
+    testCompile 'junit:junit:+',
+            'org.projectlombok:lombok:+',
+            'org.springframework:spring-test:+'
 }

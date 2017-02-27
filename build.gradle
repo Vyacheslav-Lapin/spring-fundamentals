@@ -14,21 +14,30 @@ repositories {
     maven { url 'https://jitpack.io' }
 }
 
+configurations {
+    testCompile.extendsFrom compileOnly
+}
+
 dependencies {
+    
     compile 'log4j:log4j:+',
-//            'ch.qos.logback:logback-classic:+',
             'org.hibernate:hibernate-entitymanager:+',
-//            'javax.transaction:jta:+',
             'org.springframework:spring-context-support:+',
             'org.springframework:spring-context:+',
-//            'org.codehaus.groovy:groovy-all:+',
-//            'com.h2database:h2:+',
             'io.javaslang:javaslang:+',
-            'com.github.Vyacheslav-Lapin:Hegel:master-SNAPSHOT' //https://github.com/Vyacheslav-Lapin/Hegel.git
+            'com.github.Vyacheslav-Lapin:Hegel:master-SNAPSHOT', //https://github.com/Vyacheslav-Lapin/Hegel.git
+//            'ch.qos.logback:logback-classic:+',
+//            'com.h2database:h2:+',
+//            'javax.transaction:jta:+',
+//            'org.codehaus.groovy:groovy-all:+'
 
     compileOnly 'org.projectlombok:lombok:+'
 
-    testCompile 'junit:junit:+',
-            'org.projectlombok:lombok:+',
+    testCompile 'org.junit.jupiter:junit-jupiter-api:+',
+            'org.hamcrest:java-hamcrest:+',
             'org.springframework:spring-test:+'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.4'
 }

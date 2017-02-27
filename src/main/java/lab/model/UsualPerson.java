@@ -1,25 +1,31 @@
 package lab.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Value;
 
 import javax.persistence.*;
-import java.util.Collections;
+import java.lang.reflect.*;
+import java.lang.reflect.Parameter;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
-@Data
+@Value
 @AllArgsConstructor
 public class UsualPerson implements Person {
-    @Id
-    @Column
+
+    public static void main(String[] args) {
+        System.out.println("Параметры - ");
+        Parameter[] parameters = UsualPerson.class.getConstructors()[0].getParameters();
+        for (Parameter parameter: parameters) {
+            System.out.println(parameter.getName());
+        }
+    }
+
     private int id;
 
-    @Column
     private String name;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "country_id")
     private Country country;
 
     private int age;
@@ -27,14 +33,6 @@ public class UsualPerson implements Person {
     private boolean isProgrammer;
 
     private List<String> contacts;
-
-    public UsualPerson() {
-        this("", null, 0);
-    }
-
-    public UsualPerson(String name, Country country, int age) {
-        this(0, name, country, age, 0, false, Collections.emptyList());
-    }
 
     @Override
     public void sayHello(Person person) {

@@ -5,13 +5,17 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.support.AbstractApplicationContext;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class HelloWorldTest {
 
-    private static final String APPLICATION_CONTEXT_XML_FILE_NAME = "src/test/resources/application-context.xml";
+    public static final String APPLICATION_CONTEXT_XML = "application-context.xml";
+    private static final String APPLICATION_CONTEXT_XML_FILE_NAME = "src/test/resources/" +
+            APPLICATION_CONTEXT_XML;
 
     private UsualPerson expectedPerson;
 
@@ -19,7 +23,7 @@ class HelloWorldTest {
 
     @BeforeEach
     void setUp() throws Exception {
-        context = new FileSystemXmlApplicationContext(APPLICATION_CONTEXT_XML_FILE_NAME);
+        context = new ClassPathXmlApplicationContext(APPLICATION_CONTEXT_XML);
         expectedPerson = getExpectedPerson();
     }
 
@@ -27,14 +31,18 @@ class HelloWorldTest {
     void testInitPerson() {
         Person person = context.getBean("person", Person.class);
         assertEquals(expectedPerson, person);
-        System.out.println(person);
+//        System.out.println(person);
     }
 
     private UsualPerson getExpectedPerson() {
         return new UsualPerson(
+                0,
                 "John Smith",
                 new Country(1, "Russia", "RU"),
-                35);
+                35,
+                0,
+                false,
+                Collections.emptyList());
     }
 
     @AfterEach

@@ -1,14 +1,12 @@
 package lab.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Value;
 
 import java.io.Serializable;
 
 @AllArgsConstructor
-@NoArgsConstructor
-@Data
+@Value
 public class Country implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -16,8 +14,4 @@ public class Country implements Serializable {
 	private int id;
     private String name;
     private String codeName;
-
-    public Country(String name, String codeName) {
-        this(0, name, codeName);
-    }
 }

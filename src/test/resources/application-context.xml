@@ -13,9 +13,13 @@
 
     <import resource="contacts.xml"/>
 
+    <!--<util:properties id="properties" location="classpath:JohnSmith.properties"/>-->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+          p:locations="classpath:JohnSmith.properties"/>
+
     <bean id="person" class="lab.model.UsualPerson"
-          c:name="John Smith"
-          c:age="35"
+          c:name="${name}"
+          c:age="${age}"
           c:country-ref="country"
           c:height="0"
           c:isProgrammer="false"

@@ -1,10 +1,10 @@
 import lab.model.Country;
 import lab.model.Person;
 import lab.model.UsualPerson;
-import org.junit.jupiter.api.AfterEach;
+import lombok.val;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.Collections;
@@ -13,13 +13,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class HelloWorldTest {
 
-    public static final String APPLICATION_CONTEXT_XML = "application-context.xml";
-    private static final String APPLICATION_CONTEXT_XML_FILE_NAME = "src/test/resources/" +
-            APPLICATION_CONTEXT_XML;
-
-    private UsualPerson expectedPerson;
-
-    private AbstractApplicationContext context;
+    private static final String APPLICATION_CONTEXT_XML = "application-context.xml";
+    private Person expectedPerson;
+    private BeanFactory context;
 
     @BeforeEach
     void setUp() throws Exception {
@@ -29,25 +25,31 @@ class HelloWorldTest {
 
     @Test
     void testInitPerson() {
-        Person person = context.getBean("person", Person.class);
+        val person = context.getBean("person", Person.class);
+        // ...
         assertEquals(expectedPerson, person);
-//        System.out.println(person);
     }
 
     private UsualPerson getExpectedPerson() {
+
+        val country = new Country(
+                1,
+                "Russia",
+                "RU");
+
         return new UsualPerson(
                 0,
                 "John Smith",
-                new Country(1, "Russia", "RU"),
+                country,
                 35,
                 0,
                 false,
                 Collections.emptyList());
     }
 
-    @AfterEach
-    void tearDown() throws Exception {
-        if (context != null)
-            context.close();
-    }
+//    @AfterEach
+//    void tearDown() throws Exception {
+//        if (context != null)
+//            context.close();
+//    }
 }

@@ -3,24 +3,13 @@ package lab.model;
 import lombok.AllArgsConstructor;
 import lombok.Value;
 
-import javax.persistence.*;
-import java.lang.reflect.*;
-import java.lang.reflect.Parameter;
-import java.util.Arrays;
+import javax.persistence.Entity;
 import java.util.List;
 
 @Entity
 @Value
 @AllArgsConstructor
 public class UsualPerson implements Person {
-
-    public static void main(String[] args) {
-        System.out.println("Параметры - ");
-        Parameter[] parameters = UsualPerson.class.getConstructors()[0].getParameters();
-        for (Parameter parameter: parameters) {
-            System.out.println(parameter.getName());
-        }
-    }
 
     private int id;
 

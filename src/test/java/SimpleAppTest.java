@@ -10,14 +10,14 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class SimpleAppTest {
+class SimpleAppTest {
 	
 	private static final String APPLICATION_CONTEXT_XML_FILE_NAME = "application-context.xml";
 	private BeanFactory context = new ClassPathXmlApplicationContext(APPLICATION_CONTEXT_XML_FILE_NAME);
 	private Person expectedPerson = getExpectedPerson();
 
 	@Test
-	public void testInitPerson() {
+    void testInitPerson() {
 		assertEquals(expectedPerson, context.getBean(/*"person",*/ Person.class));
 	}
 

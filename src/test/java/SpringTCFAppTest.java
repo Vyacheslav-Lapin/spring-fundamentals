@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration("classpath:application-context.xml")
-public class SpringTCFAppTest {
+class SpringTCFAppTest {
 	
 	@Autowired
 	private Person person;
@@ -22,7 +22,7 @@ public class SpringTCFAppTest {
 	private Person expectedPerson = getExpectedPerson();
 
 	@Test
-	public void testInitPerson() {
+	void testInitPerson() {
 		assertEquals(expectedPerson, person);
 	}
 

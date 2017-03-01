@@ -1,0 +1,1 @@
+package com.epam.trainings.spring.ioc.xml;public class Dependency {}

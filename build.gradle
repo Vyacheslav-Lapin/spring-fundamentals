@@ -2,6 +2,7 @@ group 'com.epam.trainings.lab.spring'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+apply plugin: 'groovy'
 
 sourceCompatibility = 1.8
 
@@ -29,7 +30,7 @@ dependencies {
 //            'ch.qos.logback:logback-classic:+',
 //            'com.h2database:h2:+',
 //            'javax.transaction:jta:+',
-//            'org.codehaus.groovy:groovy-all:+'
+            'org.codehaus.groovy:groovy-all:+'
 
     compileOnly 'org.projectlombok:lombok:+'
 

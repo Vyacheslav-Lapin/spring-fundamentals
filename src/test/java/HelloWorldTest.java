@@ -25,8 +25,7 @@ class HelloWorldTest {
 
     @Test
     void testInitPerson() {
-        val person = context.getBean("person", Person.class);
-        // ...
+        val person = context.getBean(Person.class);
         assertEquals(expectedPerson, person);
     }
 
@@ -40,10 +39,10 @@ class HelloWorldTest {
         return new UsualPerson(
                 0,
                 "John Smith",
-                country,
                 35,
                 0,
                 false,
+                country,
                 Collections.emptyList());
     }
 

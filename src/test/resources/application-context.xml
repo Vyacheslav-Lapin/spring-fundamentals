@@ -15,18 +15,21 @@
     <context:component-scan base-package="lab.model"/>
 
     <bean id="person" class="lab.model.UsualPerson"
-          p:name="John Smith"
-          p:age="35"
-          p:height="1.78"
-          p:programmer="true"
-          p:contacts-ref="list"/>
+          c:id="0"
+          c:name="John Smith"
+          c:age="35"
+          c:height="1.78"
+          c:isProgrammer="true"
+          c:contacts-ref="contacts"
+          c:country-ref="country"
+    />
 
     <bean id="country" class="lab.model.Country"
           c:id="1"
           c:name="Russia"
           c:codeName="RU"/>
 
-    <util:list id="list">
+    <util:list id="contacts" value-type="java.lang.String">
         <value>asd@asd.ru</value>
         <value>+7-234-456-67-89</value>
     </util:list>

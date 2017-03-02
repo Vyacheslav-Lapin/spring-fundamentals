@@ -5,42 +5,33 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SimpleAppTest {
-	
-	private static final String APPLICATION_CONTEXT_XML_FILE_NAME = "application-context.xml";
-	private BeanFactory context = new ClassPathXmlApplicationContext(APPLICATION_CONTEXT_XML_FILE_NAME);
-	private Person expectedPerson = getExpectedPerson();
 
-	@Test
+    private static final String APPLICATION_CONTEXT_XML_FILE_NAME = "application-context.xml";
+    private BeanFactory context = new ClassPathXmlApplicationContext(APPLICATION_CONTEXT_XML_FILE_NAME);
+    private Person expectedPerson = getExpectedPerson();
+
+    @Test
     void testInitPerson() {
-		assertEquals(expectedPerson, context.getBean(/*"person",*/ Person.class));
-	}
+        assertEquals(expectedPerson, context.getBean(/*"person",*/ Person.class));
+    }
 
-	private Person getExpectedPerson() {
-		UsualPerson person = new UsualPerson();
-		person.setAge(35);
-		person.setHeight(1.78F);
-		person.setProgrammer(true);
-		person.setName("John Smith");
-
-		Country country = new Country();
-		country.setId(1);
-		country.setName("Russia");
-		country.setCodeName("RU");
-
-		person.setCountry(country);
-
-		List<String> contacts = new ArrayList<>();
-		contacts.add("asd@asd.ru");
-		contacts.add("+7-234-456-67-89");
-
-		person.setContacts(contacts);
-
-		return person;
-	}
+    private Person getExpectedPerson() {
+        Country country = new Country(1, "Russia", "RU");
+        List<String> contacts = Arrays.asList("asd@asd.ru", "+7-234-456-67-89");
+        return new UsualPerson(
+                0,
+                "John Smith",
+                35,
+                1.78f,
+                true,
+                country,
+                contacts
+        );
+    }
 }

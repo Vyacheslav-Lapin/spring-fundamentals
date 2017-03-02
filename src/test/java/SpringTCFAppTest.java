@@ -7,46 +7,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration("classpath:application-context.xml")
 class SpringTCFAppTest {
-	
-	@Autowired
-	private Person person;
 
-	private Person expectedPerson = getExpectedPerson();
+    @Autowired
+    private Person person;
 
-	@Test
-	void testInitPerson() {
-		assertEquals(expectedPerson, person);
-	}
+    private Person expectedPerson = getExpectedPerson();
 
-	private Person getExpectedPerson() {
-		UsualPerson person = new UsualPerson();
-		person.setAge(35);
-		person.setHeight(1.78F);
-		person.setProgrammer(true);
-		person.setName("John Smith");
+    @Test
+    void testInitPerson() {
+        assertEquals(expectedPerson, person);
+    }
 
-		Country country = new Country();
-		country.setId(1);
-		country.setName("Russia");
-		country.setCodeName("RU");
-
-		person.setCountry(country);
-
-		List<String> contacts = new ArrayList<>();
-		contacts.add("asd@asd.ru");
-		contacts.add("+7-234-456-67-89");
-
-		person.setContacts(contacts);
-
-		return person;
-	}
+    private Person getExpectedPerson() {
+        return new UsualPerson(
+                0,
+                "John Smith",
+                35,
+                1.78f,
+                true,
+                new Country(1, "Russia", "RU"),
+                Arrays.asList("asd@asd.ru", "+7-234-456-67-89"));
+    }
 
 }

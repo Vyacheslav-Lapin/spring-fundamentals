@@ -1,1 +1,1 @@
-import com.epam.trainings.spring.ioc.HelloMessageGenerator/** * @author Vyacheslav * @version 0.1 (06.04.2015). */class GroovyHelloMessageGenerator implements HelloMessageGenerator {    String toString() {        "Федор Владимирович Емельяненко" // Заменить вторую букву на "ё" для прохождения теста    }}
+import com.epam.trainings.spring.ioc.HelloMessageGeneratorclass GroovyHelloMessageGenerator implements HelloMessageGenerator {    String toString() {        "Федор Владимирович Емельяненко" // Заменить вторую букву на "ё" для прохождения теста    }}

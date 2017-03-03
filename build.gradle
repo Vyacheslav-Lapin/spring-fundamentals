@@ -19,17 +19,28 @@ configurations {
     testCompile.extendsFrom compileOnly
 }
 
+// this turns logging on in tests:
+test.testLogging.showStandardStreams = true
+
 dependencies {
-    
-    compile 'log4j:log4j:+',
+
+    compile 'org.springframework:spring-context:+',
+
+            // AOP
+            'org.aspectj:aspectjrt:+',
+            'aopalliance:aopalliance:+',
+            'org.aspectj:aspectjweaver:+',
+            'org.springframework:spring-asm:+',
+
+            // ORM
             'org.hibernate:hibernate-entitymanager:+',
-            'org.springframework:spring-context-support:+',
-            'org.springframework:spring-context:+',
-            'io.javaslang:javaslang:+',
-            'com.github.Vyacheslav-Lapin:Hegel:master-SNAPSHOT', //https://github.com/Vyacheslav-Lapin/Hegel.git
-//            'ch.qos.logback:logback-classic:+',
 //            'com.h2database:h2:+',
 //            'javax.transaction:jta:+',
+
+            // Common
+            'ch.qos.logback:logback-classic:+',
+            'io.javaslang:javaslang:+',
+//            'com.github.Vyacheslav-Lapin:Hegel:master-SNAPSHOT',
             'org.codehaus.groovy:groovy-all:+'
 
     compileOnly 'org.projectlombok:lombok:+'

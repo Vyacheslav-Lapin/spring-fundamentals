@@ -29,10 +29,10 @@ class SpringTCFAppTest {
         return new UsualPerson(
                 0,
                 "John Smith",
+                new Country(1, "Russia", "RU"),
                 35,
                 1.78f,
                 true,
-                new Country(1, "Russia", "RU"),
                 Arrays.asList("asd@asd.ru", "+7-234-456-67-89"));
     }
 

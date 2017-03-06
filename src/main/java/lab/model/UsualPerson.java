@@ -3,25 +3,44 @@ package lab.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Accessors(chain = true)
+//@Entity
+@Component
 public class UsualPerson implements Person {
-
+//    @Id
+//    @Column
     private int id;
-    private String name;
-    private int age;
-    private float height;
-    private boolean isProgrammer;
 
+//    @Column
+    @Value("John Smith")
+    private String name;
+
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "country_id")
     @Autowired
     private Country country;
 
-    @Autowired
+    @Value("35")
+    private int age;
+
+    @Value("1.78")
+    private float height;
+
+    @Value("true")
+    private boolean isProgrammer;
+
+    @Resource
     private List<String> contacts;
 
     @Override

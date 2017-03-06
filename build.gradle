@@ -30,7 +30,6 @@ dependencies {
             'org.aspectj:aspectjrt:+',
             'aopalliance:aopalliance:+',
             'org.aspectj:aspectjweaver:+',
-            'org.springframework:spring-asm:+',
 
             // ORM
             'org.hibernate:hibernate-entitymanager:+',
@@ -43,7 +42,8 @@ dependencies {
 //            'com.github.Vyacheslav-Lapin:Hegel:master-SNAPSHOT',
             'org.codehaus.groovy:groovy-all:+'
 
-    compileOnly 'org.projectlombok:lombok:+'
+    compileOnly 'org.projectlombok:lombok:+',
+            'edu.washington.cs.types.checker:checker-framework:+'
 
     testCompile 'org.junit.jupiter:junit-jupiter-api:+',
             'org.hamcrest:java-hamcrest:+',

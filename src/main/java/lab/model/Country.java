@@ -7,18 +7,26 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
+
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Component
 @Builder
-public class Country {
+public class Country implements Serializable {
+
     @Value("1")
-    private int id;
+	private int id;
 
     @Value("Russia")
     private String name;
 
     @Value("RU")
     private String codeName;
+
+    public Country(String name, String codeName) {
+        this.name = name;
+        this.codeName = codeName;
+    }
 }

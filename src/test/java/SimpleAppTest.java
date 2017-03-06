@@ -27,10 +27,10 @@ class SimpleAppTest {
         return new UsualPerson(
                 0,
                 "John Smith",
+                country,
                 35,
                 1.78f,
                 true,
-                country,
                 contacts
         );
     }

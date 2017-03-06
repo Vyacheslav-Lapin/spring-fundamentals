@@ -21,18 +21,21 @@ public class Politeness {
         AopLog.append("Is " + ((Squishee) retVal).getName() + " Good Enough? \n");
     }
 
+    @AfterThrowing("execution(* sellSquishee(..))")
     public void sayYouAreNotAllowed() {
-        AopLog.append("Hmmm... \n");
+        AopLog.append("Hmmm...\n");
     }
 
+    @After("execution(* sellSquishee(..))")
     public void sayGoodBye() {
-        AopLog.append("Good Bye! \n");
+        AopLog.append("Good Bye!\n");
     }
 
+    @Around("execution(* sellSquishee(..))")
     public Object sayPoliteWordsAndSell(ProceedingJoinPoint pjp) throws Throwable {
-        AopLog.append("Hi! \n");
+        AopLog.append("Hi!\n");
         Object retVal = pjp.proceed();
-        AopLog.append("See you! \n");
+        AopLog.append("See you!\n");
         return retVal;
     }
 

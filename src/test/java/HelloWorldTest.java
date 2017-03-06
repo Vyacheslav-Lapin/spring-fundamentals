@@ -1,54 +1,56 @@
 import lab.model.Country;
 import lab.model.Person;
 import lab.model.UsualPerson;
-import lombok.val;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.BeanFactory;
+import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class HelloWorldTest {
 
-    private static final String APPLICATION_CONTEXT_XML = "application-context.xml";
-    private Person expectedPerson;
-    private BeanFactory context;
+	private static final String APPLICATION_CONTEXT_XML_FILE_NAME =
+			"application-context.xml";
 
-    @BeforeEach
-    void setUp() throws Exception {
-        context = new ClassPathXmlApplicationContext(APPLICATION_CONTEXT_XML);
-        expectedPerson = getExpectedPerson();
-    }
+	private Person expectedPerson;
 
-    @Test
-    void testInitPerson() {
-        val person = context.getBean(Person.class);
-        assertEquals(expectedPerson, person);
-    }
+	private AbstractApplicationContext context;
 
-    private UsualPerson getExpectedPerson() {
+	@BeforeEach
+	void setUp() throws Exception {
+		context = new ClassPathXmlApplicationContext(
+		        APPLICATION_CONTEXT_XML_FILE_NAME);
+		expectedPerson = getExpectedPerson();
+	}
 
-        val country = new Country(
-                1,
-                "Russia",
-                "RU");
+	@Test
+	void testInitPerson() {
+		Person person = context.getBean(
+		        "person", Person.class);
+		assertEquals(expectedPerson, person);
+		System.out.println(person);
+	}
 
-        return new UsualPerson(
-                0,
-                "John Smith",
-                35,
-                0,
-                false,
-                country,
-                Collections.emptyList());
-    }
+	private Person getExpectedPerson() {
+		UsualPerson person = new UsualPerson();
+		person.setAge(35);
+		person.setName("John Smith");
 
-//    @AfterEach
-//    void tearDown() throws Exception {
-//        if (context != null)
-//            context.close();
-//    }
+		Country country = new Country();
+		country.setId(1);
+		country.setName("Russia");
+		country.setCodeName("RU");
+
+		person.setCountry(country);
+
+		return person;
+	}
+	
+	@AfterEach
+	void tearDown() throws Exception{
+		if (context != null)
+			context.close();
+	}
 }

@@ -18,10 +18,9 @@ public class CountryDao extends JdbcDaoSupport {
     private static final String GET_COUNTRY_BY_NAME_SQL = "select * from country where name = '";
     private static final String GET_COUNTRY_BY_CODE_NAME_SQL = "select * from country where code_name = '";
 
-    private static final String UPDATE_COUNTRY_NAME_SQL_1 = "update country SET name='";
-    private static final String UPDATE_COUNTRY_NAME_SQL_2 = " where code_name='";
+    private static final String UPDATE_COUNTRY_NAME_SQL_TEMPLATE = "update country SET name='%s' where code_name='%s'";
 
-    public static final String[][] COUNTRY_INIT_DATA = {
+    protected static final String[][] COUNTRY_INIT_DATA = {
             {"Australia", "AU"},
             {"Canada", "CA"},
             {"France", "FR"},
@@ -46,24 +45,31 @@ public class CountryDao extends JdbcDaoSupport {
         return getJdbcTemplate().query(GET_ALL_COUNTRIES_SQL, COUNTRY_ROW_MAPPER);
     }
 
-    public List<Country> getCountryListStartWith(String name) {
-        NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(
-                getDataSource());
+    public List<Country> getCountryListStartWith(String prefix) {
+        NamedParameterJdbcTemplate namedParameterJdbcTemplate =
+                getNamedParameterJdbcTemplate();
+
         SqlParameterSource sqlParameterSource = new MapSqlParameterSource(
-                "name", name + "%");
+                "name", prefix + "%");
+
         return namedParameterJdbcTemplate.query(GET_COUNTRIES_BY_NAME_SQL,
                 sqlParameterSource, COUNTRY_ROW_MAPPER);
     }
 
+    private NamedParameterJdbcTemplate getNamedParameterJdbcTemplate() {
+        return new NamedParameterJdbcTemplate(getDataSource());
+    }
+
     public void updateCountryName(String codeName, String newCountryName) {
-        // TODO: implement it
+        getJdbcTemplate().update(
+                String.format(UPDATE_COUNTRY_NAME_SQL_TEMPLATE, newCountryName, codeName)
+        );
     }
 
     public void loadCountries() {
         for (String[] countryData : COUNTRY_INIT_DATA) {
             String sql = LOAD_COUNTRIES_SQL + "('" + countryData[0] + "', '"
                     + countryData[1] + "');";
-//			System.out.println(sql);
             getJdbcTemplate().execute(sql);
         }
     }
@@ -72,7 +78,6 @@ public class CountryDao extends JdbcDaoSupport {
         JdbcTemplate jdbcTemplate = getJdbcTemplate();
 
         String sql = GET_COUNTRY_BY_CODE_NAME_SQL + codeName + "'";
-//		System.out.println(sql);
 
         return jdbcTemplate.query(sql, COUNTRY_ROW_MAPPER).get(0);
     }

@@ -1,24 +1,25 @@
 package lab.aop;
 
-
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import lab.model.Customer;
-import lab.model.Squishee;
+import lab.model.Squishy;
 
 @Aspect
 public class Politeness {
 
-    @Before("execution(* sellSquishee(..))")
-    public void sayHello(JoinPoint joinPiont) {
-        AopLog.append("Hello " + ((Customer) joinPiont.getArgs()[0]).getName() + ". How are you doing? \n");
+    @Before("execution(* sellSquishee(lab.model.Customer, ..))")
+    public void sayHello(JoinPoint joinPoint) {
+        String customerName = ((Customer) joinPoint.getArgs()[0]).getName();
+        AopLog.printf("Hello %s. How are you doing?%n", customerName);
     }
 
     @AfterReturning(pointcut = "execution(* sellSquishee(..))",
             returning = "retVal", argNames = "retVal")
     public void askOpinion(Object retVal) {
-        AopLog.append("Is " + ((Squishee) retVal).getName() + " Good Enough? \n");
+        String name = ((Squishy) retVal).getName();
+        AopLog.printf("Is %s Good Enough?%n", name);
     }
 
     @AfterThrowing("execution(* sellSquishee(..))")
@@ -38,5 +39,4 @@ public class Politeness {
         AopLog.append("See you!\n");
         return retVal;
     }
-
 }

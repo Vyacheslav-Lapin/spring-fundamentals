@@ -3,6 +3,9 @@ package lab.aop;
 public class AopLog {
     private static StringBuffer value = new StringBuffer();
 
+    public static void printf(String pattern, Object... params) {
+        append(String.format(pattern, params));
+    }
     public static void append(String str){
         value.append(str);
     }

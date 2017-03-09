@@ -1,24 +1,31 @@
+package ioc.xml;
+
 import lab.model.Country;
 import lab.model.Person;
 import lab.model.UsualPerson;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class SimpleAppTest {
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration("classpath:application-context.xml")
+class SpringTCFAppTest {
 
-    private static final String APPLICATION_CONTEXT_XML_FILE_NAME = "application-context.xml";
-    private BeanFactory context = new ClassPathXmlApplicationContext(APPLICATION_CONTEXT_XML_FILE_NAME);
+    @Autowired
+    private Person person;
+
     private Person expectedPerson = getExpectedPerson();
 
     @Test
     void testInitPerson() {
-        assertEquals(expectedPerson, context.getBean(/*"person",*/ Person.class));
+        assertEquals(expectedPerson, person);
     }
 
     private Person getExpectedPerson() {

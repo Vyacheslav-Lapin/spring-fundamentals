@@ -1,3 +1,5 @@
+package aop;
+
 import lab.aop.AopLog;
 import lab.model.ApuBar;
 import lab.model.Bar;

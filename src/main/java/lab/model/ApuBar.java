@@ -4,11 +4,11 @@ import lab.aop.AopLog;
 
 public class ApuBar implements Bar {
 
-	public Squishee sellSquishee(Customer customer)  {
+	public Squishy sellSquishee(Customer customer)  {
         if (customer.isBroke()){
             throw new CustomerBrokenException();
         }
-        AopLog.append("Here is your Squishee \n");
-        return new Squishee("Usual Squishee");
+        AopLog.append("Here is your Squishy \n");
+        return new Squishy("Usual Squishy");
     }
 }

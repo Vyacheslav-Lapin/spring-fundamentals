@@ -33,7 +33,8 @@ dependencies {
 
             // ORM
             'org.hibernate:hibernate-entitymanager:+',
-//            'com.h2database:h2:+',
+            'com.h2database:h2:+',
+            'org.springframework:spring-jdbc:+',
 //            'javax.transaction:jta:+',
 
             // Common
@@ -42,8 +43,8 @@ dependencies {
 //            'com.github.Vyacheslav-Lapin:Hegel:master-SNAPSHOT',
             'org.codehaus.groovy:groovy-all:+'
 
-    compileOnly 'org.projectlombok:lombok:+',
-            'edu.washington.cs.types.checker:checker-framework:+'
+    compileOnly 'org.projectlombok:lombok:+'//,
+//            'edu.washington.cs.types.checker:checker-framework:+'
 
     testCompile 'org.junit.jupiter:junit-jupiter-api:+',
             'org.hamcrest:java-hamcrest:+',

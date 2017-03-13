@@ -35,7 +35,7 @@ dependencies {
             'org.springframework.data:spring-data-oracle:+',
 
             // ORM
-            'org.hibernate:hibernate-entitymanager:+',
+            'org.hibernate:hibernate-entitymanager:4.0.1.Final',
             'com.h2database:h2:+',
             'org.springframework:spring-jdbc:+',
 //            'javax.transaction:jta:+',

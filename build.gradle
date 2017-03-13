@@ -38,6 +38,7 @@ dependencies {
             'org.hibernate:hibernate-entitymanager:4.0.1.Final',
             'org.hibernate.javax.persistence:hibernate-jpa-2.0-api:+',
             'org.hibernate:hibernate-core:4.0.1.Final',
+            'org.springframework:spring-orm:+',
             'com.h2database:h2:+',
             'org.springframework:spring-jdbc:+',
 //            'javax.transaction:jta:+',

@@ -12,18 +12,17 @@ public class CountryJpaDaoImpl extends AbstractJpaDao implements CountryDao {
 
 	@Override
 	public void save(Country country) {
-//		TODO: Implement it
-		EntityManager em = null;
+		EntityManager em = emf.createEntityManager();
 
-		if (em != null) {
-			em.close();
-		}
-	}
+		em.persist(country);
+
+        em.close();
+    }
 
 	@Override
 	public List<Country> getAllCountries() {
 //	TODO: Implement it
-		return null	;
+		return null;
 	}// getAllcountries()
 
 	@Override

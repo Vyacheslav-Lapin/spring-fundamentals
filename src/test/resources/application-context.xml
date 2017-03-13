@@ -28,7 +28,7 @@
           p:persistenceProviderClass="org.hibernate.ejb.HibernatePersistence"/>
 
     <jdbc:embedded-database id="dataSource" type="H2">
-        <!--<jdbc:script location="classpath:db-schema.sql"/>-->
+        <jdbc:script location="classpath:db-schema.sql"/>
     </jdbc:embedded-database>
 
     <!--<import resource="aop.xml"/>-->

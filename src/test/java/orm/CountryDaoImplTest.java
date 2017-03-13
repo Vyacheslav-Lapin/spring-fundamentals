@@ -2,15 +2,15 @@ package orm;
 
 import lab.dao.CountryDao;
 import lab.model.Country;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 //import org.apache.commons.logging.Log;
 //import org.apache.commons.logging.LogFactory;
@@ -18,9 +18,9 @@ import static org.junit.Assert.assertEquals;
 /**
  * Illustrates basic use of Hibernate as a JPA provider.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration("classpath:application-context.xml")
-public class CountryDaoImplTest {
+class CountryDaoImplTest {
 
 //	private static Log log = LogFactory.getLog(orm.CountryDaoImplTest.class);
 
@@ -30,7 +30,7 @@ public class CountryDaoImplTest {
 	private CountryDao countryDao;
 
 	@Test
-	public void testSaveCountry() {
+	void testSaveCountry() {
 
 		countryDao.save(exampleCountry);
 
@@ -40,7 +40,7 @@ public class CountryDaoImplTest {
 	}
 
 	@Test
-	public void testGtAllCountries() {
+	void testGtAllCountries() {
 
 		countryDao.save(new Country("Canada", "CA"));
 
@@ -49,7 +49,7 @@ public class CountryDaoImplTest {
 	}
 
 	@Test
-	public void testGetCountryByName() {
+	void testGetCountryByName() {
 
 		Country country = countryDao.getCountryByName("Australia");
 		assertEquals(exampleCountry, country);

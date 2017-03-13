@@ -1,95 +1,15 @@
 package lab.dao;
 
 import lab.model.Country;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
-import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
 import java.util.List;
 
-public class CountryDao extends JdbcDaoSupport {
-    private static final String LOAD_COUNTRIES_SQL = "insert into country (name, code_name) values ";
+public interface CountryDao {
 
-    private static final String GET_ALL_COUNTRIES_SQL = "SELECT * FROM country";
-    private static final String GET_COUNTRIES_BY_NAME_SQL = "SELECT * FROM country WHERE name LIKE :name";
-    private static final String GET_COUNTRY_BY_NAME_SQL = "select * from country where name = '";
-    private static final String GET_COUNTRY_BY_CODE_NAME_SQL = "select * from country where code_name = '";
+	void save(Country country);
 
-    private static final String UPDATE_COUNTRY_NAME_SQL_TEMPLATE = "update country SET name='%s' where code_name='%s'";
+	List<Country> getAllCountries();
 
-    protected static final String[][] COUNTRY_INIT_DATA = {
-            {"Australia", "AU"},
-            {"Canada", "CA"},
-            {"France", "FR"},
-            {"Hong Kong", "HK"},
-            {"Iceland", "IC"},
-            {"Japan", "JP"},
-            {"Nepal", "NP"},
-            {"Russian Federation", "RU"},
-            {"Sweden", "SE"},
-            {"Switzerland", "CH"},
-            {"United Kingdom", "GB"},
-            {"United States", "US"}
-    };
+	Country getCountryByName(String name);
 
-    private static final RowMapper<Country> COUNTRY_ROW_MAPPER =
-            (resultSet, i) -> new Country(
-                    resultSet.getInt("id"),
-                    resultSet.getString("name"),
-                    resultSet.getString("code_name"));
-
-    public List<Country> getCountryList() {
-        return getJdbcTemplate().query(GET_ALL_COUNTRIES_SQL, COUNTRY_ROW_MAPPER);
-    }
-
-    public List<Country> getCountryListStartWith(String prefix) {
-        NamedParameterJdbcTemplate namedParameterJdbcTemplate =
-                getNamedParameterJdbcTemplate();
-
-        SqlParameterSource sqlParameterSource = new MapSqlParameterSource(
-                "name", prefix + "%");
-
-        return namedParameterJdbcTemplate.query(GET_COUNTRIES_BY_NAME_SQL,
-                sqlParameterSource, COUNTRY_ROW_MAPPER);
-    }
-
-    private NamedParameterJdbcTemplate getNamedParameterJdbcTemplate() {
-        return new NamedParameterJdbcTemplate(getDataSource());
-    }
-
-    public void updateCountryName(String codeName, String newCountryName) {
-        getJdbcTemplate().update(
-                String.format(UPDATE_COUNTRY_NAME_SQL_TEMPLATE, newCountryName, codeName)
-        );
-    }
-
-    public void loadCountries() {
-        for (String[] countryData : COUNTRY_INIT_DATA) {
-            String sql = LOAD_COUNTRIES_SQL + "('" + countryData[0] + "', '"
-                    + countryData[1] + "');";
-            getJdbcTemplate().execute(sql);
-        }
-    }
-
-    public Country getCountryByCodeName(String codeName) {
-        JdbcTemplate jdbcTemplate = getJdbcTemplate();
-
-        String sql = GET_COUNTRY_BY_CODE_NAME_SQL + codeName + "'";
-
-        return jdbcTemplate.query(sql, COUNTRY_ROW_MAPPER).get(0);
-    }
-
-    public Country getCountryByName(String name)
-            throws CountryNotFoundException {
-        JdbcTemplate jdbcTemplate = getJdbcTemplate();
-        List<Country> countryList = jdbcTemplate.query(GET_COUNTRY_BY_NAME_SQL
-                + name + "'", COUNTRY_ROW_MAPPER);
-        if (countryList.isEmpty()) {
-            throw new CountryNotFoundException();
-        }
-        return countryList.get(0);
-    }
 }

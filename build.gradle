@@ -31,6 +31,9 @@ dependencies {
             'aopalliance:aopalliance:+',
             'org.aspectj:aspectjweaver:+',
 
+            // Spring Data JDBC Extensions
+            'org.springframework.data:spring-data-oracle:+',
+
             // ORM
             'org.hibernate:hibernate-entitymanager:+',
             'com.h2database:h2:+',
@@ -40,6 +43,7 @@ dependencies {
             // Common
             'ch.qos.logback:logback-classic:+',
             'io.javaslang:javaslang:+',
+            'com.aol.simplereact:cyclops-react:+',
 //            'com.github.Vyacheslav-Lapin:Hegel:master-SNAPSHOT',
             'org.codehaus.groovy:groovy-all:+'
 

@@ -50,7 +50,7 @@ class CountryDaoImplTest {
 
 	@Test
 	void testGetCountryByName() {
-
+		exampleCountry.setId(1);
 		Country country = countryDao.getCountryByName("Australia");
 		assertEquals(exampleCountry, country);
 	}

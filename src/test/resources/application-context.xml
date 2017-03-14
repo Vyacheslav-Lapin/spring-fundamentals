@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:util="http://www.springframework.org/schema/util"
@@ -31,8 +30,8 @@
         <jdbc:script location="classpath:db-schema.sql"/>
     </jdbc:embedded-database>
 
-    <!--<import resource="aop.xml"/>-->
-    <!--<import resource="ioc-annotations.xml"/>-->
-    <!--<import resource="ioc-xml.xml"/>-->
+    <import resource="aop.xml"/>
+    <import resource="ioc-annotations.xml"/>
+    <import resource="ioc-xml.xml"/>
 
 </beans>

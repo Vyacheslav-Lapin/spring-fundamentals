@@ -43,6 +43,26 @@ public class CountryJpaDaoImpl extends AbstractJpaDao implements CountryDao {
     }
 
     @Override
+    public List<Country> getCountryListStartWith(String name) {
+        return null;
+    }
+
+    @Override
+    public void updateCountryName(String codeName, String newCountryName) {
+
+    }
+
+    @Override
+    public void loadCountries() {
+
+    }
+
+    @Override
+    public Country getCountryByCodeName(String codeName) {
+        return null;
+    }
+
+    @Override
     public Country getCountryByName(String name) {
         return CheckedFunction0.liftTry(emf::createEntityManager)
                 .andThen(Try::get)

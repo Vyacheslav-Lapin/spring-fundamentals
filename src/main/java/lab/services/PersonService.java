@@ -1,4 +1,4 @@
-package lab.servises;
+package lab.services;
 
 import lab.model.Person;
 

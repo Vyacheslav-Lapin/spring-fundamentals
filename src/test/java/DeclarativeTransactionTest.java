@@ -1,5 +1,4 @@
 import lab.services.CountryService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,15 +13,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration("classpath:application-context.xml")
-public class DeclarativeTransactionTest extends JdbcTest {
+class DeclarativeTransactionTest extends JdbcTest {
     
 	@Autowired
 	private CountryService countryService;
-
-    @BeforeEach
-    public void setUp() throws Exception {
-        super.setUp();
-    }
 
     @Test
     @DirtiesContext

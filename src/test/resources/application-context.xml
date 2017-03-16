@@ -19,7 +19,10 @@
         http://www.springframework.org/schema/jdbc    http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
 ">
 
+    <context:annotation-config/>
     <context:component-scan base-package="lab.model, lab.dao, lab.services"/>
+    
+    <import resource="jdbc.xml"/>
 
     <bean id="transactionManager"
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
@@ -29,12 +32,12 @@
 
     <!--<bean id="countryDao" class="lab.dao.jpa.CountryJpaDaoImpl"/>-->
 
-    <bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
-          p:dataSource-ref="dataSource"
-          p:persistenceUnitName="springframework.lab.orm.jpa"
-          p:persistenceProviderClass="org.hibernate.ejb.HibernatePersistence"/>
+    <!--<bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"-->
+          <!--p:dataSource-ref="dataSource"-->
+          <!--p:persistenceUnitName="springframework.lab.orm.jpa"-->
+          <!--p:persistenceProviderClass="org.hibernate.ejb.HibernatePersistence"/>-->
 
-    <import resource="jdbc.xml"/>
+
     <import resource="aop.xml"/>
     <import resource="ioc-annotations.xml"/>
     <import resource="ioc-xml.xml"/>

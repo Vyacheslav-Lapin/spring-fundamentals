@@ -7,11 +7,11 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
+//@Component
+//@Qualifier("simpleCountryDao")
 public class SimpleCountryDao extends JdbcDaoSupport implements CountryDao {
 
     private static final String LOAD_COUNTRIES_SQL = "insert into country (name, code_name) values ";
@@ -46,7 +46,7 @@ public class SimpleCountryDao extends JdbcDaoSupport implements CountryDao {
                     .setCodeName(rs.getString("code_name"));
 
     @Override
-    public List<Country> getCountryList() {
+    public List<Country> getAllCountries() {
         return getJdbcTemplate().query(
                 GET_ALL_COUNTRIES_SQL, COUNTRY_ROW_MAPPER);
     }
@@ -101,10 +101,5 @@ public class SimpleCountryDao extends JdbcDaoSupport implements CountryDao {
     @Override
     public void save(Country country) {
 
-    }
-
-    @Override
-    public List<Country> getAllCountries() {
-        return null;
     }
 }

@@ -4,11 +4,10 @@ import javaslang.CheckedFunction0;
 import javaslang.control.Try;
 import lab.dao.CountryDao;
 import lab.model.Country;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+//@Repository
 public class CountryJpaDaoImpl extends AbstractJpaDao implements CountryDao {
 
     @Override

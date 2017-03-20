@@ -1,36 +1,65 @@
 package lab.dao;
 
 import lab.model.Country;
+import lab.model.simple.SimpleCountry;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public interface CountryDao {
 
-    void save(Country country);
+    String[][] COUNTRY_INIT_DATA = {
+            {"Australia", "AU"},
+            {"Canada", "CA"},
+            {"France", "FR"},
+            {"Hong Kong", "HK"},
+            {"Iceland", "IC"},
+            {"Japan", "JP"},
+            {"Nepal", "NP"},
+            {"Russian Federation", "RU"},
+            {"Sweden", "SE"},
+            {"Switzerland", "CH"},
+            {"United Kingdom", "GB"},
+            {"United States", "US"}
+    };
 
-    List<Country> getAllCountries();
+    List<Country> getAll();
 
-    /**
-     * @deprecated use {@link #getAllCountries}
-     */
-    @Deprecated
-    default List<Country> getCountryList() {
-        return getAllCountries();
+    default Country getByName(String name) {
+        return getAll().stream()
+                .filter(country -> country.getName().equals(name))
+                .findAny()
+                .orElse(null);
     }
 
-    List<Country> getCountryListStartWith(String name);
-
-    void updateCountryName(String codeName, String newCountryName);
-
-    void loadCountries();
-
     default Country getCountryByCodeName(String codeName) {
-        return getAllCountries().stream()
+        return getAll().stream()
                 .filter(country -> country.getCodeName().equals(codeName))
                 .findAny()
                 .orElse(null);
     }
 
-    Country getCountryByName(String name);
+    void save(Country country);
 
+    default void loadCountries() {
+        Arrays.stream(COUNTRY_INIT_DATA)
+//                .filter(strings -> strings.length == 2)
+                .map(countryData -> new SimpleCountry(countryData[0], countryData[1]))
+                .forEach(this::save);
+    }
+
+    default void updateName(String codeName, String newCountryName) {
+        getAll().stream()
+                .filter(country -> country.getCodeName().equals(codeName))
+                .peek(country -> country.setName(newCountryName))
+                .forEach(this::save);
+    }
+
+    default List<Country> getStartsWith(String name) {
+        int length = name.length();
+        return getAll().stream()
+                .filter(country -> country.getName().substring(0, length).equals(name))
+                .collect(Collectors.toList());
+    }
 }

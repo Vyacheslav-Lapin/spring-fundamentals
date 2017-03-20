@@ -1,11 +1,20 @@
 package lab.dao;
 
-import lab.model.Person;
-import org.springframework.stereotype.Repository;
+import lab.model.User;
 
-@Repository
-public class PersonDao {
-    public Person getPerson(int id) {
-        return null; // TODO: 03/03/2017
+import java.util.List;
+
+public interface PersonDao {
+
+    void insert(User user);
+
+    List<User> selectAll();
+
+    default User select(int id) {
+        return selectAll().stream()
+                .filter(user -> user.getId() == id)
+                .findFirst()
+                .orElse(null);
     }
+
 }

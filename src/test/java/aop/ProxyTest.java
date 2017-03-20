@@ -8,7 +8,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ProxyTest {
+class ProxyTest {
 
     @FunctionalInterface
     interface Messenger {
@@ -30,9 +30,11 @@ public class ProxyTest {
                             case "hashCode":
                                 return System.identityHashCode(messenger);
                             case "toString":
-                                return proxy.getClass().getName() + "@" +
-                                        Integer.toHexString(System.identityHashCode(proxy)) +
-                                        ", with InvocationHandler";
+                                String className = proxy.getClass().getName();
+                                return String.format(
+                                        "%s@%s, with InvocationHandler",
+                                        className,
+                                        Integer.toHexString(System.identityHashCode(proxy)));
                             default:
                                 throw new IllegalStateException(String.valueOf(method));
                         }

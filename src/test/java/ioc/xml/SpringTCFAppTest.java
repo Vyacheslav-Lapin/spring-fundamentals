@@ -1,8 +1,9 @@
 package ioc.xml;
 
 import lab.model.Country;
+import lab.model.simple.SimpleCountry;
 import lab.model.Person;
-import lab.model.UsualPerson;
+import lab.model.simple.SimplePerson;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +30,9 @@ class SpringTCFAppTest {
     }
 
     private Person getExpectedPerson() {
-        Country country = new Country(1, "Russia", "RU");
+        Country country = new SimpleCountry(1, "Russia", "RU");
         List<String> contacts = Arrays.asList("asd@asd.ru", "+7-234-456-67-89");
-        return new UsualPerson(
+        return new SimplePerson(
                 0,
                 "John Smith",
                 country,

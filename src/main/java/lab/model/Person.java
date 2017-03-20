@@ -1,7 +1,9 @@
 package lab.model;
 
 public interface Person {
-    Person setName(String name);
+
     String getName();
+    void setName(String name);
+
     void sayHello(Person person);
 }

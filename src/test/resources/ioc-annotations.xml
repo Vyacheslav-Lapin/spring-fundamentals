@@ -10,7 +10,6 @@
     <context:component-scan base-package="com.epam.trainings.spring.ioc.annotations"/>
 
     <!--<bean id="firstName" class="java.lang.String" c:_0="Фёдор"/>-->
-
     <bean id="lastName" class="java.lang.String" c:_0="Емельяненко"/>
     <bean id="patronymic" class="java.lang.String" c:_0="Викторович"/>
 

@@ -2,6 +2,7 @@ group 'com.epam.trainings.lab.spring'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+apply plugin: 'war'
 apply plugin: 'groovy'
 
 sourceCompatibility = 1.8
@@ -37,12 +38,20 @@ dependencies {
             // Spring Data JDBC Extensions
             'org.springframework.data:spring-data-oracle:+',
 
-            // ORM
+            // ORM & TX
             'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:+',
             'org.hibernate:hibernate-entitymanager:4.0.1.Final',
             'org.hibernate:hibernate-core:4.0.1.Final',
             'org.springframework:spring-orm:+',
             'javax.transaction:jta:+',
+
+            // MVC
+            'com.mchange:c3p0:+',
+            'commons-dbcp:commons-dbcp:+',
+            'javax.validation:validation-api:+',
+            'commons-validator:commons-validator:+',
+            'org.springframework:spring-web:+',
+            'org.springframework:spring-webmvc:+',
 
             // Common
             'ch.qos.logback:logback-classic:+',
@@ -52,7 +61,8 @@ dependencies {
             'org.codehaus.groovy:groovy-all:+'
 
 
-    compileOnly 'org.projectlombok:lombok:+'//,
+    compileOnly 'org.projectlombok:lombok:+',
+            'org.apache.tomcat:servlet-api:+'//,
 //            'edu.washington.cs.types.checker:checker-framework:+'
 
     testCompile 'org.junit.jupiter:junit-jupiter-api:+',

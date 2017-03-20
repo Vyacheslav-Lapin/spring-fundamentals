@@ -1,7 +1,7 @@
-import lab.model.UsualPerson
+import lab.model.simple.SimplePerson
 
 beans {
-    person(UsualPerson,
+    person(SimplePerson,
             programmer: true,
             name: 'John Smith',
             age: 35,

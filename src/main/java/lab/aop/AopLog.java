@@ -3,7 +3,7 @@ package lab.aop;
 public class AopLog {
     private static StringBuffer value = new StringBuffer();
 
-    public static void printf(String pattern, Object... params) {
+    static void printf(String pattern, Object... params) {
         append(String.format(pattern, params));
     }
     public static void append(String str){
@@ -15,6 +15,6 @@ public class AopLog {
     }
 
     public static void clear(){
-        value = new StringBuffer();
+        value.delete(0, value.length());
     }
 }

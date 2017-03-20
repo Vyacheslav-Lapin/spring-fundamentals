@@ -4,6 +4,7 @@ import javaslang.CheckedFunction0;
 import javaslang.control.Try;
 import lab.dao.CountryDao;
 import lab.model.Country;
+import lab.model.simple.SimpleCountry;
 
 import java.util.List;
 
@@ -28,12 +29,12 @@ public class CountryJpaDaoImpl extends AbstractJpaDao implements CountryDao {
     }
 
     @Override
-    public List<Country> getAllCountries() {
+    public List<Country> getAll() {
         return CheckedFunction0.liftTry(emf::createEntityManager)
                 .andThen(Try::get)
                 .andThen(entityManager -> {
                             List<Country> countryList = entityManager
-                                    .createQuery("select c from Country c", Country.class)
+                                    .createQuery("select c from SimpleCountry c", SimpleCountry.class)
                                     .getResultList();
                             entityManager.close();
                             return countryList;
@@ -42,34 +43,14 @@ public class CountryJpaDaoImpl extends AbstractJpaDao implements CountryDao {
     }
 
     @Override
-    public List<Country> getCountryListStartWith(String name) {
-        return null;
-    }
-
-    @Override
-    public void updateCountryName(String codeName, String newCountryName) {
-
-    }
-
-    @Override
-    public void loadCountries() {
-
-    }
-
-    @Override
-    public Country getCountryByCodeName(String codeName) {
-        return null;
-    }
-
-    @Override
-    public Country getCountryByName(String name) {
+    public Country getByName(String name) {
         return CheckedFunction0.liftTry(emf::createEntityManager)
                 .andThen(Try::get)
                 .andThen(entityManager -> {
                     Country country = entityManager
                             .createQuery(
-                                    "select c from Country c where c.name like :name",
-                                    Country.class)
+                                    "select c from SimpleCountry c where c.name like :name",
+                                    SimpleCountry.class)
                             .setParameter("name", name)
                             .getSingleResult();
                     entityManager.close();

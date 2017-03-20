@@ -1,10 +1,10 @@
 package lab.aop;
 
+import lab.model.Squishy;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import lab.model.Customer;
-import lab.model.Squishy;
 
 @Aspect
 public class Politeness {

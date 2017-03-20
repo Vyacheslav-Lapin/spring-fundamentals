@@ -42,36 +42,36 @@ public class SimpleCountryService implements CountryService {
 
     @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
 	public List<Country> getAllCountriesRequired() {
-		return countryDao.getAllCountries();
+		return countryDao.getAll();
 	}
 
     @Transactional(readOnly = true, propagation = Propagation.REQUIRES_NEW)
 	public List<Country> getAllCountriesRequiresNew() {
-		return countryDao.getAllCountries();
+		return countryDao.getAll();
 	}
 
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 	public List<Country> getAllCountriesSupports() {
-		return countryDao.getAllCountries();
+		return countryDao.getAll();
 	}
 
     @Transactional(readOnly = true, propagation = Propagation.NEVER)
 	public List<Country> getAllCountriesNever() {
-		return countryDao.getAllCountries();
+		return countryDao.getAll();
 	}
 
     @Transactional(readOnly = true, propagation = Propagation.MANDATORY)
 	public List<Country> getAllCountriesMandatory() {
-		return countryDao.getAllCountries();
+		return countryDao.getAll();
 	}
 
     @Transactional(readOnly = true, propagation = Propagation.NOT_SUPPORTED)
 	public List<Country> getAllCountriesNotSupported() {
-		return countryDao.getAllCountries();
+		return countryDao.getAll();
 	}
 
 	public List<Country> getAllCountries() {
-		return countryDao.getAllCountries();
+		return countryDao.getAll();
 	}
 
 }

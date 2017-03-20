@@ -1,9 +1,10 @@
-package lab.model;
+package lab.model.simple;
 
+import lab.model.Country;
+import lab.model.Person;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.Accessors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -15,10 +16,10 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Accessors(chain = true)
 @Entity
 @Component
-public class UsualPerson implements Person {
+public class SimplePerson implements Person {
+
     @Id
     @Column
     private int id;
@@ -40,6 +41,9 @@ public class UsualPerson implements Person {
 
     @Value("true")
     private boolean isProgrammer;
+
+    @Value("false")
+    private boolean broke;
 
     @Resource
     private List<String> contacts;

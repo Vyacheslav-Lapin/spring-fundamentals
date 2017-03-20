@@ -2,8 +2,8 @@ package aop;
 
 import lab.aop.AopLog;
 import lab.model.Bar;
-import lab.model.Customer;
 import lab.model.CustomerBrokenException;
+import lab.model.Person;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,7 +23,7 @@ class AopAspectJExceptionTest {
     private Bar bar;
 
     @Autowired
-    private Customer customer;
+    private Person customer;
 
     @BeforeEach
     void setUp() throws Exception {
@@ -33,7 +33,7 @@ class AopAspectJExceptionTest {
     @Test
     void testAfterThrowingAdvice() {
 
-        assertThrows(CustomerBrokenException.class, () -> bar.sellSquishee(customer));
+        assertThrows(CustomerBrokenException.class, () -> bar.sellSquishy(customer));
 
         assertTrue("Customer is not broken ",
                 AopLog.getStringValue().contains("Hmmm..."));
